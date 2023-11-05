@@ -116,8 +116,10 @@ struct BottleScannerView: View {
                     
                     switch result {
                     case .success(let code):
+                        //! Update the bottles scanned to increment this only when company is not unknown.
                         bottlesScanned += 1 // Increment the bottle count here
                         
+                        //! Update the bottles scanned to increment this only when company is not unknown.
                         // Updates the user balance
                         userBalance.updateBalance(forBottles: 1) // Calls the update method from the update balance class
                         
@@ -140,5 +142,11 @@ struct BottleScannerView: View {
                 }
             }
         }
+    }
+}
+
+struct bottleScannerView_Previews: PreviewProvider {
+    static var previews: some View {
+        BottleScannerView(studentName: "Amit Aharoni")
     }
 }
