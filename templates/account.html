@@ -26,27 +26,29 @@
         </div>
         
         <!-- Where the QR Code will be displayed -->
-        <div id="qrcode-2" style="margin-top: 20px;"></div>
+        <div id="qrcode" style="margin-top: 20px;"></div>
         
         <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
         <script type="text/javascript">
-            var qrcode; // We will assign this later in the function
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: "placeholder",
+                width: 128,
+                height: 128,
+                colorDark: "#5868bf",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
 
             function generateQRCode() {
-                var studentId = document.getElementById('studentId').value;
-                // If a QR Code already exists, clear it before creating a new one
-                var qrcodeContainer = document.getElementById('qrcode-2');
-                qrcodeContainer.innerHTML = ''; // Clear the container
-                
-                // Create a new QRCode object
-                qrcode = new QRCode(qrcodeContainer, {
-                    text: studentId,
-                    width: 128,
-                    height: 128,
-                    colorDark: "#5868bf",
-                    colorLight: "#ffffff",
-                    correctLevel: QRCode.CorrectLevel.H
-                });
+                var studentId = document.getElementById('studentId').value.trim();
+                if (!studentId) {
+                    alert("Please enter your Student ID.");
+                    return;
+                }
+                // Clear the previous QR code
+                qrcode.clear(); 
+                // Make a new QR code with the student ID
+                qrcode.makeCode(studentId);
             }
         </script>
     </div>
