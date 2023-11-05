@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Account page</title>
+    <link rel="stylesheet" href="css.css">
     <style>
         body {
-            font-family: 'Assistant', sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -55,10 +53,12 @@
         }
     </style>
 </head>
+<body style="display: flex; flex-direction: column; min-height: 100vh; margin: 0;">
 <body>
 
     <header>
         <div class="header">
+            <h1> CUNY COIN</h1>
             <h1>CUNY COIN</h1>
         </div>
         <div class="img">
@@ -66,48 +66,35 @@
         </div>
     </header>
 
-    <!-- Adjusted form starts here -->
-    <div class="container">
-        <div class="payment">
-            <div class="card">
-                <div class="card__number">**** **** **** 1234</div>
-                <div class="card__name">
-                    <h3>Cardholder name</h3>
-                    <p>John Doe</p>
-                </div>
-                <div class="card__expiry">
-                    <h3>Expires</h3>
-                    <p>10/26</p>
-                </div>
-                <!-- Include other card elements if necessary -->
-            </div>
-
-            <div class="form">
-                <h2>Payment Details</h2>
-                <div class="form__name">
-                    <label for="name">Name on Card</label>
-                    <input type="text" id="name" placeholder="John Doe">
-                </div>
-                <div class="form__number">
-                    <label for="cardNumber">Card Number</label>
-                    <input type="text" id="cardNumber" placeholder="**** **** **** 1234">
-                </div>
-                <div class="form__expiry">
-                    <label for="expiry">Expiry Date</label>
-                    <input type="text" id="expiry" placeholder="MM/YY">
-                </div>
-                <div class="form__cvv">
-                    <label for="cvv">CVV</label>
-                    <input type="text" id="cvv" placeholder="123">
-                </div>
-                <button class="form__btn">Pay Now</button>
-                <!-- Include other form elements if necessary -->
-            </div>
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <!-- Input for Student ID -->
+        <div>
+            <label for="studentId">Enter your Student ID:</label><br>
+            <input type="text" id="studentId" placeholder="Student ID">
+            <button onclick="generateQRCode()">Generate QR Code</button>
         </div>
+
+        <!-- Where the QR Code will be displayed -->
+        <div id="qrcode" style="margin-top: 20px;"></div>
+
+        <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+        <script type="text/javascript">
+            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                text: "placeholder",
+                width: 128,
+                height: 128,
+                colorDark: "#5868bf",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
+            });
+    <div class="input-container">
+        <label for="studentId">Enter your Student ID:</label><br>
+        <input type="text" id="studentId" placeholder="Student ID">
+        <button onclick="generateQRCode()">Generate QR Code</button>
     </div>
-    
+
     <div id="qrcode"></div>
-    
+
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script type="text/javascript">
         var qrcode = new QRCode(document.getElementById("qrcode"), {
@@ -119,22 +106,31 @@
             correctLevel: QRCode.CorrectLevel.H
         });
 
+            function generateQRCode() {
+                var studentId = document.getElementById('studentId').value.trim();
+                if (!studentId) {
+                    alert("Please enter your Student ID.");
+                    return;
+                }
+                // Clear the previous QR code
+                qrcode.clear(); 
+                // Make a new QR code with the student ID
+                qrcode.makeCode(studentId);
         function generateQRCode() {
             var studentId = document.getElementById('studentId').value.trim();
             if (!studentId) {
                 alert("Please enter your Student ID.");
                 return;
             }
+        </script>
+    </div>
             qrcode.clear(); // Clear the previous QR code
             qrcode.makeCode(studentId); // Make a new QR code with the student ID
         }
     </script>
 
+    <footer style="background-color: #333; color: #fff; text-align: center; padding: 10px;">
     <footer>
         <div class="footer">
-            <p>&copy; 2023 CUNY Coin Team. All rights reserved.</p>
+            <p>&copy; 2023 Your Website Name. All rights reserved.</p>
         </div>
-    </footer>
-
-</body>
-</html>
