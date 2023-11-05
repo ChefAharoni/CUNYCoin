@@ -6,7 +6,7 @@
     <title>Account page</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Assistant', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -66,10 +66,44 @@
         </div>
     </header>
 
-    <div class="input-container">
-        <label for="studentId">Enter your Student ID:</label><br>
-        <input type="text" id="studentId" placeholder="Student ID">
-        <button onclick="generateQRCode()">Generate QR Code</button>
+    <!-- Adjusted form starts here -->
+    <div class="container">
+        <div class="payment">
+            <div class="card">
+                <div class="card__number">**** **** **** 1234</div>
+                <div class="card__name">
+                    <h3>Cardholder name</h3>
+                    <p>John Doe</p>
+                </div>
+                <div class="card__expiry">
+                    <h3>Expires</h3>
+                    <p>10/26</p>
+                </div>
+                <!-- Include other card elements if necessary -->
+            </div>
+
+            <div class="form">
+                <h2>Payment Details</h2>
+                <div class="form__name">
+                    <label for="name">Name on Card</label>
+                    <input type="text" id="name" placeholder="John Doe">
+                </div>
+                <div class="form__number">
+                    <label for="cardNumber">Card Number</label>
+                    <input type="text" id="cardNumber" placeholder="**** **** **** 1234">
+                </div>
+                <div class="form__expiry">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" placeholder="MM/YY">
+                </div>
+                <div class="form__cvv">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123">
+                </div>
+                <button class="form__btn">Pay Now</button>
+                <!-- Include other form elements if necessary -->
+            </div>
+        </div>
     </div>
     
     <div id="qrcode"></div>
@@ -98,7 +132,7 @@
 
     <footer>
         <div class="footer">
-            <p>&copy; 2023 Your Website Name. All rights reserved.</p>
+            <p>&copy; 2023 CUNY Coin Team. All rights reserved.</p>
         </div>
     </footer>
 
